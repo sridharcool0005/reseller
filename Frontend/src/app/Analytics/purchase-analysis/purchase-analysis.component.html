@@ -1,0 +1,89 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Purchase Analysis</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 ">
+        <form (ngSubmit)="regform.form.valid&&getpurchaseDataByDate(regform.form.value)" #regform="ngForm">
+
+          <input type="date"  name="fromDate" placeholder="FromDate" ngModel>&nbsp;
+          <input type="date" name="toDate" placeholder="ToDate" ngModel>&nbsp;
+
+          <input type="submit">
+        </form>
+      </div>
+      <div class="col-md-6 mubutn">
+        <input type="text" class="search" [(ngModel)]="client_firstname" placeholder=" Search By Name" aria-label="Search"
+        (input)="search()">
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+            Client ID</th>
+          <th class="text-center">
+            FullName</th>
+          <th class="text-center">DateofPurchase</th>
+          <th class="text-center">Amount Paid</th>
+          <th class="text-center">SMS Credits</th>
+
+          <th class="text-center">Payment Status</th>
+          <th class="text-center">Add Balance (Yes/No)</th>
+
+          <th colspan="2" class="text-center">Action
+          </th>
+
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            {{person.client_id}}
+          </td>
+          <td>
+            {{person.client_firstname}}{{person.client_lastname}}
+          </td>
+          <td>
+             {{person.txn_date| date: 'dd/MM/yyyy'}}
+          </td>
+          <td>{{person.total_amount_paid}}</td>
+          <td>{{person.package_sms_credits}}</td>
+
+          <td >
+            <select [(ngModel)]="person.payment_status_code" name="payment_status_code" >
+              <option value="success" [disabled]="person.payment_status_code=='success'" >success</option>
+              <option value="pending"  [disabled]="person.payment_status_code=='success'">pending</option>
+              <option value="Cancel"  [disabled]="person.payment_status_code=='success'">Cancel</option>
+
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="person.add_balance" name="add_balance" >
+              <option value="select" selected disabled>select</option>
+              <option value="Yes">yes</option>
+              <option value="No" >No</option>
+            </select>
+          </td>
+          <td>
+            <a (click)="updateclientData(person)"><span class="material-icons">
+                save
+              </span></a>
+          </td>
+
+          <td>
+            <a> <span class="material-icons" [routerLink]="['/viewPurchaseDetailed',person.package_id,person.order_id]" matTooltip="View Detailed"
+                matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip">
+                visibility
+              </span>
+            </a>
+          </td>
+
+
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

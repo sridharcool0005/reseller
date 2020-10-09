@@ -1,0 +1,100 @@
+
+<form (ngSubmit)="updateclientData(regform.form.value)" #regform="ngForm">
+  <div class="medias mymedia text-center border border-light p-5 " *ngFor="let user of userdata">
+    <h5>Client Name: {{user.client_firstname}} {{user.client_lastname}}</h5>
+    <h6>ClientId: {{user.client_id}}</h6> <img src="assets/img/person.png" width="25%">
+
+    <div class="container">
+      <div class="row">
+
+    <div class="col-md-6">
+    UserId<input type="text" class="form-control mb-4" placeholder="UserId" name="user_smsgateway_id" [(ngModel)]="user.user_smsgateway_id">
+    </div>
+    <div class="col-md-6">
+    Authkey<input type="text" class="form-control mb-4" placeholder="user_smsgateway_authkey"
+      name="user_smsgateway_authkey" [(ngModel)]="user.user_smsgateway_authkey">
+    </div>
+      <div class="col-md-4">
+
+      SenderId<input type="text" class="form-control mb-4" placeholder="SenderId " maxlength="6" name="user_smsgateway_sender_id"
+      [(ngModel)]="user.user_smsgateway_sender_id">
+      </div>
+      <div class="col-md-4">
+    SenderId 1<input type="text" class="form-control mb-4" placeholder="SenderId 1" maxlength="6" name="user_smsgateway_sender_id1"
+      [(ngModel)]="user.user_smsgateway_sender_id1">
+      </div>
+      <div class="col-md-4">
+    SenderId 2<input type="text" class="form-control mb-4" placeholder="SenderId 2" maxlength="6" name="user_smsgateway_sender_id2"
+      [(ngModel)]="user.user_smsgateway_sender_id2">
+      </div>
+      <div class="col-md-6">
+    Route
+    <select class="browser-default custom-select" name="user_smsgateway_route" [(ngModel)]="user.user_smsgateway_route">
+      <option selected value="">select Route</option>
+      <option value="1">1-Promo</option>
+      <option value="4">4-Tran</option>
+      <option value="16">16-OTP</option>
+    </select>
+</div>
+<div class="col-md-6">
+    PID<input type="text" class="form-control mb-4" placeholder="PID" name="user_smsgateway_pid"
+      [(ngModel)]="user.user_smsgateway_pid">
+</div>
+<div class="col-md-6">
+    Unicode
+    <select class="browser-default custom-select" name="user_smsgateway_unicode"
+      [(ngModel)]="user.user_smsgateway_unicode">
+      <option selected value="">Select</option>
+      <option value="1">1-Hindi</option>
+      <option value="0">0-English</option>
+    </select>
+    </div>
+    <!-- <div class="col-md-4">
+    AccountType<input type="text" disabled class="form-control mb-4" placeholder="AccountType" name="account_type"
+      [(ngModel)]="user.account_type" value="user.account_type">
+</div> -->
+
+<div class="col-md-6">
+    AccountStatus
+    <select class="browser-default custom-select" name="account_status" [(ngModel)]="user.account_status">
+      <option selected value="">Select</option>
+      <option value="review" [disabled]="user.account_status=='active'">Review</option>
+      <option value="active" [disabled]="user.account_status=='active'">Active</option>
+      <option value="pending" [disabled]="user.account_status=='active'">Pending</option>
+      <option value="disable" [disabled]="user.account_status=='active'">Disable</option>
+    </select>
+</div>
+
+ <div class="col-md-6">
+    SIM Allowed<select class="browser-default custom-select" name="is_sim_allowed" [(ngModel)]="user.is_sim_allowed">
+      <option value="" selected>select</option>
+      <option value="YES">Yes</option>
+      <option value="NO">No</option>
+    </select>
+</div>
+    <div class="col-md-6">
+    MinBalance Required<select class="browser-default custom-select" name="is_min_bal_req" [(ngModel)]="user.is_min_bal_req">
+      <option value="" selected>select</option>
+      <option value="YES">Yes</option>
+      <option value="NO">No</option>
+
+    </select>
+</div>
+
+<div class="col-md-6">
+  <br>
+  Account_plan_id<input type="text" class="form-control mb-4" placeholder="account_plan_id" [(ngModel)]="user.account_plan_id" name="account_plan_id" disabled>
+  </div>
+
+  <div class="col-md-6">
+    <br>
+    plan_expiry_date<input type="date" class="form-control mb-4"   [ngModel]="user.plan_expiry_date| date:'y-MM-dd'" (ngModelChange)="user.plan_expiry_date = $event" name="plan_expiry_date" >
+
+    </div>
+    <!-- Sign up button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
+  </div>
+</div>
+</div>
+</form>
+

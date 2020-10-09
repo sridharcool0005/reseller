@@ -1,0 +1,141 @@
+<!-- Jumbotron -->
+<div class="jumbotron p-0">
+  <div class="avatar mx-auto white"><img src="assets/img/person.png" class="rounded-circle">
+</div>
+  <!-- Card image -->
+  <div class="view overlay rounded-top">
+    <div class="card text-center">
+      <div class="conatiner" >
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">ClientId</strong>:
+                  <span class="list-group-right">{{personList.client_id}}</span>
+                </div>
+              </li>
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">FullName</strong>:
+                  <span class="list-group-right">{{personList.client_firstname}}{{personList.client_lastname}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">Email</strong>:
+                  <span class="list-group-right">{{personList.client_email}}</span>
+                </div>
+              </li>
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">MobileNumber</strong>:
+                  <span class="list-group-right">{{personList.client_mobile_number}}</span>
+                </div>
+              </li>
+
+              <li class="list-group-item" >
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">City</strong>:
+                  <span class="list-group-right">{{personList.client_city}}</span>
+                </div>
+              </li>
+
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">State</strong>:
+                  <span class="list-group-right">{{personList.client_state}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">coupon_id</strong>:
+                  <span class="list-group-right">{{personList.coupon_id}}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-group-item-fixed">
+                  <strong class="list-group-left">coupon_amount</strong>:
+                  <span class="list-group-right">{{personList.coupon_amount}}</span>
+                </div>
+              </li>
+
+            </ul>
+        </div>
+
+
+<div class="col-md-6">
+
+  <ul class="list-group list-group-flush">
+
+
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">Date of Purchase</strong>:
+        <span class="list-group-right">{{personList.txn_date}}</span>
+      </div>
+    </li>
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">OrderId</strong>:
+        <span class="list-group-right">{{personList.order_id}}</span>
+      </div>
+    </li>
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">PackageName</strong>:
+        <span class="list-group-right">{{personList.package_name}}</span>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">SMSCredits</strong>:
+        <span class="list-group-right">{{personList.package_sms_credits}}</span>
+      </div>
+    </li>
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">PaymentMode</strong>:
+        <span class="list-group-right">{{personList.payment_mode}}</span>
+      </div>
+    </li>
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">Payment Status</strong>:
+        <span class="list-group-right">{{personList.payment_status_code}}</span>
+      </div>
+    </li>
+
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">TxnId</strong>:
+        <span class="list-group-right">{{personList.payment_gateway_txn_id}}</span>
+      </div>
+    </li>
+    <li class="list-group-item" >
+      <div class="list-group-item-fixed">
+        <strong class="list-group-left">TxnRef</strong>:
+        <span class="list-group-right">{{personList.payment_gateway_txn_ref}}</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body text-center mb-3">
+
+
+    <!-- Button -->
+    <a class="btn purple-gradient btn-rounded mb-4" routerLink="/analytics">Close</a>
+
+  </div>
+
+</div>
+<!-- Jumbotron -->

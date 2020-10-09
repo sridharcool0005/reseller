@@ -1,0 +1,124 @@
+
+
+
+
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">View Clients</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 search">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="getClients()">
+          <mdb-icon fas icon="sync-alt"></mdb-icon>
+        </button>&nbsp;
+          <input  type="text" [(ngModel)]="searchText" placeholder=" Search By Filter"
+            aria-label="Search" >
+
+
+          <select class="browser-default custom-select filter" (change)="getclientsbyfilter($event.target.value)">
+            <option selected value="">select</option>
+            <option  value="All">ALL</option>
+            <option value="review" >Review</option>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="disable">Disable</option>
+          </select>
+      </div>
+      <div class="col-md-6 mubutn">
+
+
+
+        <button mat-stroked-button color="primary" routerLink="/client/addclient">
+          Add
+          <span class="material-icons">
+            add
+          </span></button>
+          <button mat-stroked-button color="primary" routerLink="/client/createprofile">
+            Bulkprofile Create
+              <span class="material-icons">
+                add
+              </span></button>
+
+        <img class="xlicon media " src="assets/img/xlicon.png" (click)="exportAsXLSX()">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+
+      <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+        <tr style="background-color: darkblue;color:white">
+          <th class="text-center">
+           Client ID</th>
+          <th class="text-center">
+            FullName</th>
+          <th class="text-center">Mobile</th>
+          <th class="text-center">Status</th>
+          <th colspan="4" class="text-center">Action
+          </th>
+
+        </tr>
+        <tr *ngFor="let person of personList| filter: {client_id: searchText, client_firstname:searchText,  client_lastname: searchText,user_mobile_number:searchText}; let i=index;" #loaded>
+          <td>
+            {{person.client_id}}
+          </td>
+          <td>
+            {{person.client_firstname}}{{person.client_lastname}}
+          </td>
+          <td name="name">
+            {{person.user_mobile_number}}
+          </td>
+          <td name="mobile">
+            <select class="browser-default custom-select" [(ngModel)]="person.account_status" name="account_status">
+              <option selected value="">select</option>
+              <option value="review"  [disabled]="person.account_status=='active'">Review</option>
+              <option value="active"  [disabled]="person.account_status=='active'">Active</option>
+              <option value="pending" [disabled]="person.account_status=='active'">Pending</option>
+              <option value="disable" [disabled]="person.account_status=='active'">Disable</option>
+            </select>
+          </td>
+
+          <td>
+            <a>
+              <span class="material-icons" (click)="updatestatus(person)" matTooltip="Save"
+              matTooltipClass="example-tooltip-red"
+              aria-label="Button that shows a red tooltip">
+                save
+                </span>
+                </a>
+              </td>
+          <td>
+           <a> <span class="material-icons" [routerLink]="['/client/viewDetail/',person.client_id]"      matTooltip="View Detailed"
+            matTooltipClass="example-tooltip-red"
+            aria-label="Button that shows a red tooltip">
+              visibility
+              </span>
+              </a>
+          </td>
+
+          <td>
+           <a [routerLink]="['/client/editclient/',person.client_id]"> <span class="table-Add"      matTooltip="Edit User"
+            matTooltipClass="example-tooltip-red"
+            aria-label="Button that shows a red tooltip">
+              <i class="fas fa-user-edit" ></i>
+            </span></a>
+          </td>
+          <td *ngIf="role=='admin'">
+            <a (click)="deleteclient(person.client_id)">
+              <span class="material-icons"      matTooltip="Delete User"
+              matTooltipClass="example-tooltip-red"
+              aria-label="Button that shows a red tooltip">
+                delete
+                </span>
+            </a>
+          </td>
+
+
+        </tr>
+      </table>
+
+
+      <h6 class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</h6>
+
+    </div>
+  </div>
+</div>

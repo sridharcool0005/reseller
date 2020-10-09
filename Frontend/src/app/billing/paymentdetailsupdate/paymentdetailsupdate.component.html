@@ -1,0 +1,61 @@
+<button mat-stroked-button color="primary" routerLink="/billing/smspackagelist">Back</button>
+<form (ngSubmit)="regform.form.valid&&getclientdetails(regform.form.value)" #regform="ngForm">
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-4">
+        <input type="text"  class="form-control mb-4" placeholder="Enter Clients MobileNumber"  name="mobilenumber" ngModel>
+      </div>
+      <div class="col-md-4">
+    <button mat-raised-button color="primary" type="submit">verify client</button>
+  </div>
+</div>
+</div>
+</form>
+
+<div class="container" *ngIf="clientData" >
+  <div class="row">
+
+    <div class="col-md-6">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+        <div class="medias mymedia text-center border border-light p-5 " >
+          <h6>ClientId: {{clientData.client_id}}</h6><h6>Name: {{clientData.client_firstname}}{{clientData.client_lastname}}</h6>
+            <img src="assets/img/addsmspack.jpg" width="25%"><br>
+
+              <input type="text"  class="form-control mb-4" placeholder="PaymentMode" formControlName="payment_mode" >
+              <input type="text"  class="form-control mb-4" placeholder="Transation ID" formControlName="payment_gateway_txn_id" >
+              <input type="text"  class="form-control mb-4" placeholder="Transation Ref" formControlName="payment_gateway_txn_ref" >
+              <input type="file"   class="form-control mb-4" (change)="uploadFile($event)">
+              <input type="text"  class="form-control mb-4" placeholder="Notes" formControlName="notes" >
+
+            <button mdbBtn color="info" block="true"  class="my-4" type="submit">Submit</button>
+        </div>
+        </form>
+
+    </div>
+    <div class="col-md-6 payment" >
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Payment Details</mat-card-title>
+        </mat-card-header>
+        <h6><b>Package price:&nbsp;{{package_price}}</b></h6>
+        <mat-form-field class="example-full-width">
+          <mat-label>DiscountAmount</mat-label>
+          <input matInput placeholder="Enter Discount Amount" (input)="calculatediscount($event.target.value)">
+        </mat-form-field>
+      <hr>
+<h6><b>Amount to Pay:&nbsp;&nbsp;{{amount_topay}}</b></h6>
+<h6><b>GST:{{package_gst_amount}}%&nbsp;&nbsp;</b></h6>
+<hr class="new4">
+<h6><b>Total Amount to Pay:&nbsp;&nbsp;{{totalamount}}</b></h6>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+  <div class="alert alert-danger" role="alert" *ngIf="message">
+   {{message}}
+  </div>

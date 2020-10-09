@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <select class="browser-default custom-select">
+        <option selected>Select Package</option>
+        <option value="1">Rate Card-1</option>
+        <option value="2">Rate Card-2</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="browser-default custom-select">
+        <option selected>Select Premium Plan</option>
+        <option value="1">Rate Card-1</option>
+        <option value="2">Rate Card-2</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <!-- <button mdbBtn color="info" block="true" type="button" routerLink="/viewnotifyTemplates">Templates</button> -->
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <table class="table table-bordered table-responsive-md table-striped text-center table-media">
+          <tr style="background-color: darkblue;color:white">
+            <th class="text-center">
+              PackageID</th>
+            <th class="text-center">
+              PackageName</th>
+            <th class="text-center">PackageRoute </th>
+            <th class="text-center">UnitPrice</th>
+            <th class="text-center">Credits </th>
+            <th class="text-center">packagePrice</th>
+            <th class="text-center">Validity</th>
+          </tr>
+          <tr *ngFor="let person of personList; let id = index">
+            <td>
+              {{person.package_id}}
+            </td>
+            <td>
+              {{person.package_name}}
+            </td>
+            <td name="name">
+              {{person.package_route}}
+            </td>
+            <td name="mobile">
+              {{person.	package_unit_price}}
+            </td>
+            <td name="address1">
+              {{person.package_sms_credits}}
+            </td>
+            <td name="city">
+              {{person.	package_price}}
+            </td>
+            <td name="state">
+              {{person.package_validity_in_months	}}
+            </td>
+          </tr>
+        </table>
+        <button mdbBtn color="success" block="true" type="submit" routerLink="/sendnotify">Proceed</button>
+      </div>
+    </div>
+  </div>
+</div>
