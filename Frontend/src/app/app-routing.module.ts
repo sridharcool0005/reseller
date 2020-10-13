@@ -51,6 +51,7 @@ import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/up
 import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 
 const routes: Routes = [{
@@ -65,6 +66,7 @@ const routes: Routes = [{
     component: PostsComponent
   },
   { path: 'userprofile', component: ProfileComponent },
+  {path:'changepassword', component:ChangepasswordComponent},
 
 {path:'client',component:ClientComponent,children:[
   {path:'addclient',component:AddClientsComponent},

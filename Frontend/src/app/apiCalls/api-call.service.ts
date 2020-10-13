@@ -236,12 +236,12 @@ postofficeApi(data){
 }
 
 getplanexpirycontacts(data){
-  return this.http.post(environment.apiBaseUrl + '/getplanexpirycontacts',data)
+  return this.http.post(environment.apiBaseUrl + '/partner/'+this.getPartner_id()+'/getplanexpirycontacts',data)
 
 }
 
 getplanexpirycontactsAll(){
-  return this.http.get(environment.apiBaseUrl + '/getplanexpirycontactsAll')
+  return this.http.get(environment.apiBaseUrl + '/partner/'+this.getPartner_id()+'/getplanexpirycontactsAll')
 
 }
 
@@ -251,11 +251,11 @@ insertnotifications(data){
 }
 
 registeredcontactstracking(data){
-  return this.http.post(environment.apiBaseUrl + '/registeredcontactstracking',data)
+  return this.http.post(environment.apiBaseUrl +'/partner/'+this.getPartner_id()+ '/registeredcontactstracking',data)
 }
 
 getTodayregisterdData(){
-  return this.http.get(environment.apiBaseUrl + '/getTodayregisterdData')
+  return this.http.get(environment.apiBaseUrl +'/partner/'+this.getPartner_id()+ '/getTodayregisterdData')
 
 }
 
@@ -279,6 +279,11 @@ updatePremiumPlan(data){
 
 deletePremiumPack(data){
   return this.http.post(environment.apiBaseUrl + '/deletePremiumPack',data)
+
+}
+
+resetPassword(data){
+  return this.http.post(environment.apiBaseUrl + '/partner/'+this.getPartner_id()+'/ChangePassword',data)
 
 }
   // Helper Methods

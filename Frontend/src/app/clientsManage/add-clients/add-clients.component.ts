@@ -29,6 +29,7 @@ export class AddClientsComponent implements OnInit {
       console.log(res)
       if (res.status == "success") {
         alert('new client added Sucessfully')
+        this.router.navigate(['/client/viewclient'])
       } else if (res.status == "error") {
         alert(res.message)
       }

@@ -68,6 +68,7 @@ import { UpdatepremiumplanComponent } from './PackageManage/updatepremiumplan/up
 import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component';
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { SendnotificationComponent } from './campaign/sendnotification/sendnotif
     PushnotifyComponent,
     NotifytemplatesComponent,
     SendnotificationComponent,
+    ChangepasswordComponent,
 
 
 

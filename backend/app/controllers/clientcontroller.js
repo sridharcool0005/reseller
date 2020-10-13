@@ -4,6 +4,8 @@ var emailservice = require('../routes/mailer');
 var http = require('http');
 const crypto = require("crypto");
 const request = require('request');
+const bcrypt = require('bcryptjs')
+const saltRounds = 10;
 
 var db = mysql.createConnection({
   host: 'localhost',
@@ -240,6 +242,7 @@ module.exports.addnewClient = async (req, res) => {
     json: true,
     method: 'POST',
   }
+ 
   request(options, (err, response, body) => {
     if (err) {
       res.json(err)
@@ -423,5 +426,54 @@ module.exports.fetchProfessions = async (req, res) => {
       res.send(body)
 
     }
+  });
+}
+
+
+module.exports.getuserdataCount = async function (req, res) {
+  const partner_id=req.params.partner_id;
+  // query = "SELECT * FROM portal_users WHERE partner_id =?"
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM portal_users WHERE partner_id =?"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      "success": "users data ",
+      "data": result
+    });
+  });
+}
+
+
+module.exports.getResellerCount = async function (req, res) {
+  const partner_id=req.params.partner_id;
+  // query = "SELECT * FROM portal_users WHERE partner_id =?"
+  countQuery = "SELECT COUNT(role ='partner') AS NumberOfResellers FROM portalusers WHERE partner_id =?"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      "success": "users data ",
+      "data": result
+    });
+  });
+}
+
+
+module.exports.ChangePassword = async (req, res) => {
+  const partner_id = req.params.partner_id;
+console.log(req.body.password,partner_id);
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+    var sql = "UPDATE portal_adminusers SET  password =? WHERE  partner_id =?";
+console.log(hash)
+   db.query(sql,[hash,partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+   status: 'success',
+      message:"Password changed successfully"
+    });
+  })
+
   });
 }

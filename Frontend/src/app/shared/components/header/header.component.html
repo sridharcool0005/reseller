@@ -8,26 +8,26 @@
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
-                <li>
+                <!-- <li>
                     <button mat-icon-button>
                         <mat-icon>settings</mat-icon>
                     </button>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <button mat-icon-button>
                         <mat-icon>help_outline</mat-icon>
                     </button>
-                </li>
+                </li> -->
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
                     </button>
 
                     <mat-menu #menu="matMenu">
-                      <!-- <button mat-menu-item routerLink="/userprofile" *ngIf="role =='admin'">
+                      <button mat-menu-item routerLink="/changepassword" >
                         <mat-icon>exit_to_app</mat-icon>
-                        Profile
-                    </button> -->
+                      Change Password
+                    </button>
                         <button mat-menu-item (click)="onLogout()" value="Logout">
                             <mat-icon>exit_to_app</mat-icon>
                             Sign out

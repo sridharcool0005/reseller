@@ -15,51 +15,6 @@ var database = mysql.createConnection({
 
 });
 
-// module.exports.createbulkprofiles = async (req, res) => {
-
-//   const password = '121212'
-//   const hash = bcrypt.hashSync(password, saltRounds);
-
-//   const { formdata } = req.body;
-
-//   var count = '';
-//   var promiseSaveArr = [];
-//   if (Array.isArray(formdata)) {
-//     formdata.forEach(obj => {
-//       count = formdata.length
-
-//       const smsportal_authkey = crypto.randomBytes(16).toString("hex");
-//       const agent_id = crypto.randomBytes(4).toString("hex");
-//       // create excel model
-//       db.sync().then(function () {
-//         var newTemplate = {
-//           agent_id: agent_id,
-//           smsportal_authkey: smsportal_authkey,
-//           firstname: obj.firstname,
-//           lastname: obj.lastname,
-//           email: obj.email,
-//           mobilenumber: obj.mobilenumber,
-//           country_code: '91',
-//           profession: obj.profession,
-//           pin: hash,
-//         };
-//         // save one obj
-
-//         promiseSaveArr.push(bulkcontactsModel.create(newTemplate))
-
-//       });
-//     });
-//   }
-
-//   return await Promise.all(promiseSaveArr).then(result => {
-
-//     res.status(200).send({ success: true, message: count + ' ' + 'profiles created  sucessfully' });
-//   }).catch((err) => {
-
-//     res.status(400).send({ success: false, message: err.message })
-//   });
-
-// };
 
 
 module.exports.createbulkprofiles = async (req, res) => {

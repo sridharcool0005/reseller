@@ -28,6 +28,7 @@
   "dependencies": {
     "angular": "^1.6.2",
     "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "cors": "^2.8.5",
     "express": "^4.15.2",

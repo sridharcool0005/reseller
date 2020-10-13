@@ -59,7 +59,8 @@ this.role=this.apiCall.getRole();
     })
   }
 
-  deleteclient(client_id, id) {
+  deleteclient(client_id,id) {
+    console.log(id)
     const yes = confirm('Are you sure want to Delete?');
     if(yes){
     const data = { client_id: client_id }
@@ -67,6 +68,7 @@ this.role=this.apiCall.getRole();
       console.log(res);
       alert('User Deleted Sucessfully')
       this.remove(id);
+      this.getClients();
     })
   }
   }
