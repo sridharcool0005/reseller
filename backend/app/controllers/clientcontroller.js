@@ -394,8 +394,7 @@ module.exports.postofficeApi = async (req, res) => {
   }
 
   request(options, (err, response, body) => {
-    // console.log(err)
-    // console.log(response)
+ 
     console.log(body)
 
     if (err) {
@@ -417,8 +416,6 @@ module.exports.fetchProfessions = async (req, res) => {
   }
 
   request(options, (err, response, body) => {
-    // console.log(err)
-    // console.log(response)
     console.log(body)
     if (err) {
       res.json(err)
@@ -458,7 +455,6 @@ module.exports.getResellerCount = async function (req, res) {
     });
   });
 }
-
 
 module.exports.ChangePassword = async (req, res) => {
   const partner_id = req.params.partner_id;
