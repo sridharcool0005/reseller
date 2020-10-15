@@ -13,6 +13,10 @@ var modelDefinition = {
         allowNull: false
     },
 
+    partner_id: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     package_icon: {
         type: Sequelize.STRING,
         allowNull: true
@@ -54,6 +58,6 @@ var modelDefinition = {
 
 
 // 3: Define the User model.
-var packageModel = db.define('smspackage_master', modelDefinition);
+var packageModel = db.define('portal_smspackage_master', modelDefinition);
 
 module.exports = packageModel;

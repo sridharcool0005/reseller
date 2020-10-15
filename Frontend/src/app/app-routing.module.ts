@@ -52,6 +52,7 @@ import { PushnotifyComponent } from './campaign/pushnotify/pushnotify.component'
 import { NotifytemplatesComponent } from './campaign/notifytemplates/notifytemplates.component';
 import { SendnotificationComponent } from './campaign/sendnotification/sendnotification.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { DownloadapkComponent } from './downloadapk/downloadapk.component';
 
 
 const routes: Routes = [{
@@ -67,6 +68,7 @@ const routes: Routes = [{
   },
   { path: 'userprofile', component: ProfileComponent },
   {path:'changepassword', component:ChangepasswordComponent},
+
 
 {path:'client',component:ClientComponent,children:[
   {path:'addclient',component:AddClientsComponent},
@@ -138,6 +140,8 @@ path:'templates',component:TemplatesComponent,children:[
   path: 'login', component: UserComponent,
   children: [{ path: '', component: SignInComponent }]
 },
+{path:'downloadapk', component:DownloadapkComponent},
+
 {
   path: '', redirectTo: '/login', pathMatch: 'full'
 },

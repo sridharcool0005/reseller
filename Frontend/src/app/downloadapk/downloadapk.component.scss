@@ -1,0 +1,51 @@
+form{
+
+  width: 50%;
+}
+
+
+.col-md-2.otpverify {
+  margin-top: 2%;
+  margin-left: -3%;
+}
+.container.downloadapk {
+  margin-top: -13%;
+}
+.downloadbutton {
+  margin-left: -60%;
+}
+button.center.blue-gradient {
+  margin-left: 45%;
+  margin-top: 2%;
+}
+.col-md-8 {
+  margin-top: 2%;
+}
+.container.otp {
+  margin-top: 15%;
+}
+.col-md-3.otpverify{
+  margin-top: -15%;
+  margin-left: 5%;
+
+}
+.alert.alert-success {
+  width: 65%;
+}
+button.btn.purple-gradient {
+  margin-top: 2%;
+}
+
+@media screen and (max-width: 1060px){
+form.mesida{
+  width: 100%;
+  margin-bottom: 10%;
+}
+.col-md-3.otpverify.mdeia {
+  margin-left: 15%;
+  padding: 5%;
+}
+.alert.alert-success.mdia {
+  width: 100%;
+}
+}

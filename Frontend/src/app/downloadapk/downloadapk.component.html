@@ -1,0 +1,66 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <form class=" mesida text-center border border-light p-5 " (ngSubmit)="regform.form.valid&&downloadapk(regform.form.value)" #regform="ngForm">
+        <h4 class="h4 mb-4"><img src="assets/img/logo.png" width="25%">&nbsp;Nutan App</h4>
+        <p class="h4 mb-4"> APK Download Center</p>
+<div *ngIf="!otpSent">
+        <p>Fill Up your details to download Apk</p>
+        <!-- Name -->
+        <div>
+        <input type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Name" name="name" ngModel  #name="ngModel"
+        [ngClass]="{ 'is-invalid': regform.submitted && name.invalid }" required >
+        <div *ngIf="regform.submitted && name.invalid" class="invalid-feedback">
+          <div *ngIf="name.errors.required"> Name is required</div>
+        </div>
+</div>
+
+<div>
+        <!-- Email -->
+        <input type="text" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="MobileNumber" minlength="10" maxlength="10" name="mobilenumber" ngModel pattern="[6-9]{1}[0-9]{9}"  #mobile="ngModel"
+        [ngClass]="{ 'is-invalid': regform.submitted && mobile.invalid }" required >
+        <div *ngIf="regform.submitted && mobile.invalid" class="invalid-feedback">
+          <div *ngIf="mobile.errors.required">Mobile Number is required</div>
+          <div *ngIf="mobile.errors.minlength">please enter a valid mobile number</div>
+          <div *ngIf="mobile.errors.pattern">must be a valid Mobile number</div>
+        </div>
+</div>
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block" type="Submit">Submit</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="container otp" *ngIf="otpSent == 'success'">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3 otpverify mdeia" *ngIf="messageType !== 'success'">
+      <h6><b>Enter OTP received </b></h6>
+      <ng-otp-input type="Number" (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
+      <div class="alert alert-danger" role="alert" *ngIf="messageType == 'error'">
+        {{otpMessage}}
+           </div>
+    </div>
+  </div>
+</div>
+
+<div class="container downloadapk">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6 sucess">
+      <div class="alert alert-success mdia" role="alert" *ngIf="messageType == 'success'">
+        {{otpMessage}}
+        </div>
+      <div *ngIf="messageType == 'success'" class="downloadbutton">
+       <a href="http://billmart.nutansms.in/nutanapp.apk"><button mdbBtn type="Submit" gradient="blue" rounded="true" class="center" mdbWavesEffect>Download Apk</button></a>
+      <a href="https://nutanapp.nutantek.com"><button class="btn purple-gradient">Home</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+

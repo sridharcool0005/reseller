@@ -429,17 +429,34 @@ module.exports.fetchProfessions = async (req, res) => {
 
 module.exports.getuserdataCount = async function (req, res) {
   const partner_id=req.params.partner_id;
-  // query = "SELECT * FROM portal_users WHERE partner_id =?"
-  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM portal_users WHERE partner_id =?"
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (created_on between CURRENT_date and CURRENT_DATE  + interval 1 day) order by created_on asc"
   await db.query(countQuery,[partner_id], function (err, result, fields) {
     if (err) throw err;
     res.send({
       "code": 200,
-      "success": "users data ",
-      "data": result
+     status: "success",
+      result
     });
   });
 }
+
+
+
+module.exports.getuserdataCountweekly = async function (req, res) {
+  const partner_id=req.params.partner_id;
+ 
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (created_on between CURRENT_date and CURRENT_DATE - interval 7 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
 
 
 module.exports.getResellerCount = async function (req, res) {
@@ -450,11 +467,14 @@ module.exports.getResellerCount = async function (req, res) {
     if (err) throw err;
     res.send({
       "code": 200,
-      "success": "users data ",
-      "data": result
+      status: "success",
+       result
     });
   });
 }
+
+
+
 
 module.exports.ChangePassword = async (req, res) => {
   const partner_id = req.params.partner_id;
@@ -471,5 +491,165 @@ console.log(hash)
     });
   })
 
+  });
+}
+
+
+
+module.exports.submitcustomerdetails = async (req, res) => {
+  const { name, mobilenumber } = req.body;
+  if (!name && !mobilenumber) {
+    res.status(400).send({ status: 'false', message: 'plz make sure to enter valid data' });
+  }
+
+  try {
+    const sendSMS = await sendOTP(mobilenumber);
+    if (sendSMS) {
+        res.status(200).send({ status: "success", message: 'message sent sucessfully' })
+    }
+  } catch (e) {
+    res.status(400).send({ status: 'error', message: e.message })
+  }
+}
+
+
+const sendOTP = async (mobilenumber) => {
+  console.log('sendOTP')
+  return new Promise((resolve, reject) => {
+    const options = {
+      url: 'https://nutanapp.nutansms.in/sendOTPdownload.php',
+      qs: { mobilenumber: mobilenumber },
+      json: true,
+    }
+     request(options, (err, response, body) => {
+      if (err) {
+        console.log(err)
+        reject(err);
+      } else {
+        console.log(body);
+        resolve(true);
+      }
+    });
+  });
+}
+
+
+module.exports.verifyAndSaveDetails = async (req, res) => {
+  try {
+ const verifiedOtp = await verifyOTP(req);
+ const savedDetails = await saveDetails(req);
+ if (verifiedOtp && savedDetails) {
+  res.send({success: true, message: 'OTP verified. Please click to Download APK.'});
+ } else {
+  res.send({success: false, message: 'Unable to verify otp and save details'})
+ }
+} catch(error) {
+  res.send({success: false, message: error})
+}
+}
+
+const verifyOTP =async (req) => {
+
+  try {
+    return new Promise((resolve,reject) => {
+
+  const {otp,mobilenumber}=req.body;
+    const options = {
+      url: 'https://nutanapp.nutansms.in/verifyOTPdownload.php',
+      qs: { mobilenumber: mobilenumber, otp: otp },
+      json: true,
+    }
+     request(options, (err, response, body) => {
+      if (err) {
+        reject(err);
+      } else {
+        // console.log(body)
+       if(body.type == "success"){
+         resolve(true)
+        } else {
+          reject(body.message)
+        }
+      }
+  });
+
+});
+} catch(E) {
+  throw e;
+}
+}
+
+const saveDetails = async (req) => {
+  try{
+  console.log('saving user')
+  
+  return new Promise((resolve, reject) => {
+ 
+    const query_id = crypto.randomBytes(4).toString("hex");
+    const query = "INSERT INTO portal_users_query_feedback SET ?"
+    var newTemplate = {
+      query_id: query_id,
+      name: req.body.name,
+      mobilenumber: req.body.mobilenumber,
+      partner_id: req.params.partner_id,
+      message: 'APK Download',
+      subject: ' APK Download'
+    };
+    console.log(newTemplate)
+     db.query(query, newTemplate, function (err, result, fields) {
+      if (err) {
+        console.log(err)
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+ 
+  });
+}catch(error){
+  throw error;
+}
+}
+
+
+
+module.exports.getplanexpirytoday= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (plan_expiry_date between CURRENT_date and CURRENT_DATE  + interval 1 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
+module.exports.getplanexpirynextweek= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT COUNT(client_id) AS NumberOfclients FROM users WHERE partner_id =? and  (plan_expiry_date between CURRENT_date and CURRENT_DATE  + interval 7 day) order by created_on asc"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+       result
+    });
+  });
+}
+
+module.exports.getclientscount= async function (req, res) {
+  const partner_id=req.params.partner_id;
+  
+  countQuery = "SELECT  COUNT(IF(account_plan_id = 'P1005', 1, NULL)) 'Freedom',  COUNT(IF(account_plan_id = 'P1008', 1, NULL)) 'Silver', COUNT(IF(account_plan_id = 'P1016', 1, NULL)) 'Gold',COUNT(IF(account_plan_id = 'P1020', 1, NULL)) 'Diamond' FROM portal_users where partner_id =?"
+  await db.query(countQuery,[partner_id], function (err, result, fields) {
+    if (err) throw err;
+    res.send({
+      "code": 200,
+      status: "success",
+     result
+    });
   });
 }

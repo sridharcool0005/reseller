@@ -7,7 +7,7 @@
 <mat-divider></mat-divider>
 
 <br> -->
-
+<!--
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
   <mat-card fxFlex="25">
       <app-widget-card label="New Users" total="12" percentage="50" [data]="cards"></app-widget-card>
@@ -21,7 +21,7 @@
   <mat-card fxFlex="25">
       <app-widget-card label="SMS Credits Sold" total="10" percentage="20" [data]="cards"></app-widget-card>
   </mat-card>
-</div>
+</div> -->
 
 <!-- <br>
 
@@ -71,3 +71,135 @@
 <br>
 <br>
 <br> -->
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-info card-header-icon">
+
+          <div>
+            <i class="fas fa-user-plus">&nbsp;New Clients</i>
+            <p class="card-category"></p>
+            <ul class="list-group list-group-horizontal-md" >
+              <div class="list">
+                <li >Today</li>
+                <h4 class="card-title" >{{newclients}}</h4>
+              </div>
+
+              <div class="weak">
+                <li >This Week</li>
+                <h4 class="card-title" >{{newusersweekly}}</h4>
+              </div>
+            </ul>
+
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">update</i> Just Updated
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          <div >
+            <div class="card-icon">
+              <i class="fas fa-users">&nbsp;Total Clients</i>
+            </div>
+            <p class="card-category"></p>
+
+
+          <ul class="list-group list-group-horizontal-md" *ngIf="userdata">
+            <div class="list">
+              <li >Freedom    </li>
+              <h4 class="card-title" >{{userdata.Freedom}}</h4>
+            </div>
+&nbsp;&nbsp;      &nbsp;&nbsp;
+            <div class="list">
+              <li >Silver    </li>
+              <h4 class="card-title" >{{userdata.Silver}}</h4>
+            </div>
+            &nbsp;&nbsp;      &nbsp;&nbsp;
+            <div class="list">
+              <li >Gold  </li>
+              <h4 class="card-title" >{{userdata.Gold}}</h4>
+            </div>
+            &nbsp;&nbsp;  &nbsp;&nbsp;
+            <div class="list">
+              <li >Diamond  </li>
+              <h4 class="card-title" >{{userdata.Diamond}}</h4>
+            </div>
+          </ul>
+        </div>
+
+        </div>
+
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> Last 24 Hours
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-danger card-header-icon" >
+          <div >
+          <div class="card-icon">
+            <i class="fas fa-briefcase">&nbsp; Plan Expiring</i>
+          </div>
+          <p class="card-category"></p>
+          <ul class="list-group list-group-horizontal-md">
+            <div class="list">
+              <li >Today</li>
+              <h4 class="card-title" >{{planexpirytdy}}</h4>
+            </div>
+
+            <div class="weak">
+              <li >This Week</li>
+              <h4 class="card-title" >{{planexpiryweekly}}</h4>
+            </div>
+          </ul>
+        </div>
+
+
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> Last 24 Hours
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats" >
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+            <p class="card-category"> Payments Received</p>
+
+            <h4 class="card-title" >   20 </h4>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">date_range</i> 10  validity
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>

@@ -52,7 +52,7 @@ var modelOptions = {
 };
 
 // 3: Define the User model.
-var UserModel = db.define('portal_adminusers', modelDefinition, modelOptions);
+var UserModel = db.define('portalusers', modelDefinition, modelOptions);
 
 // Compares two passwords.
 function comparePasswords(password, callback) {

@@ -23,9 +23,9 @@ var APIRoutes = function (passport) {
   router.post('/partner/:partner_id/getuserDetails', ClientController.getuserDetails);
   router.put('/partner/:partner_id/updateclientData', ClientController.updateclientData);
   router.post('/partner/:partner_id/deleteclient', ClientController.deleteclient);
-  router.post('/addPackages', packageController.addPackage);
+  router.post('/partner/:partner_id/addPackages', packageController.addPackage);
   router.put('/updatePackage', packageController.updatePackage);
-  router.get('/getAllPackages', packageController.getAllPackages);
+  router.get('/partner/:partner_id/getAllPackages', packageController.getAllPackages);
   router.post('/getPackageDetails', packageController.getPackageDetails);
   router.post('/deletePackage', packageController.deletePackage);
   router.post('/sendSMS', ClientController.sendSMS);
@@ -60,6 +60,16 @@ var APIRoutes = function (passport) {
   router.get('/partner/:partner_id/getuserdataCount',ClientController.getuserdataCount);
   router.get('/partner/:partner_id/getResellerCount',ClientController.getResellerCount);
   router.post('/partner/:partner_id/ChangePassword', ClientController.ChangePassword);
+  router.post('/submitcustomerdetails', ClientController.submitcustomerdetails);
+  router.post('/partner/:partner_id/verifyOTP', ClientController.verifyAndSaveDetails);
+  router.get('/partner/:partner_id/userdataCountweekly',ClientController.getuserdataCountweekly);
+  router.get('/partner/:partner_id/getplanexpirytoday',ClientController.getplanexpirytoday);
+  router.get('/partner/:partner_id/getplanexpirynextweek',ClientController.getplanexpirynextweek);
+  router.get('/partner/:partner_id/getclientscount',ClientController.getclientscount);
+
+  
+  
+
   
   // GET Routes.
   router.get('/profile', passport.authenticate('jwt', { session: false }), allowOnly(config.accessLevels.user, UserController.index));
